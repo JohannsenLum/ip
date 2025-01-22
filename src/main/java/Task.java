@@ -7,10 +7,6 @@ public class Task {
         this.isDone = false;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
     public Boolean isDone() {
         return this.isDone;
     }
@@ -21,5 +17,10 @@ public class Task {
 
     public void setDone(Boolean isDone) {
         this.isDone = isDone;
+    }
+
+    @Override
+    public String toString() {
+        return (isDone? "[X] ": "[ ] ") + this.name;
     }
 }
