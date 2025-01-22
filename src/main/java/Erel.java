@@ -19,7 +19,7 @@ public class Erel {
             if (action.equals("bye")) {break;}
             if (action.equals("list")) {
                 System.out.println(spaces + lines);
-                System.out.println(spaces + " Here are tahe tasks in your list:");
+                System.out.println(spaces + " Here are the tasks in your list:");
                 int counter = 1;
                 for (Task s : arrList) {
                     System.out.println(spaces + " " + counter++ + "." + s.toString());
@@ -28,14 +28,14 @@ public class Erel {
             } else if (action.equals("mark")) {
                 int taskNumber = Integer.parseInt(input.split(" ")[1]) - 1;
                 arrList.get(taskNumber).setDone(true);
-                System.out.println(spaces + lines + "\n " + spaces + "Nice! I've marked this task as done: ");
+                System.out.println(spaces + lines + "\n " + spaces + "Nice! I've marked this task as done:");
                 System.out.println(spaces + spaces + arrList.get(taskNumber).toString());
                 System.out.println(spaces + lines + "\n");
 
             } else if (action.equals("unmark")) {
                 int taskNumber = Integer.parseInt(input.split(" ")[1]) - 1;
                 arrList.get(taskNumber).setDone(false);
-                System.out.println(spaces + lines + "\n " + spaces + "Ok, I've marked this task as not done yet: ");
+                System.out.println(spaces + lines + "\n " + spaces + "Ok, I've marked this task as not done yet:");
                 System.out.println(spaces + spaces + arrList.get(taskNumber).toString());
                 System.out.println(spaces + lines + "\n");
 
