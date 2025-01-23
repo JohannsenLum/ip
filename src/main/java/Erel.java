@@ -94,9 +94,10 @@ public class Erel {
 
     private static void printInsert() {
         printLine();
-        System.out.println("Got it. I've added this task:\n" + "    " + arrList.get(arrList.size() - 1));
+        System.out.println(" Got it. I've added this task:\n" + "    " + arrList.get(arrList.size() - 1));
         System.out.println( " Now you have " + arrList.size() + " tasks in the list.");
         printLine();
+        System.out.println();
     }
 
     private static void deleteTask(int taskNumber) {
@@ -106,6 +107,7 @@ public class Erel {
         System.out.println(" Noted. I've removed this task:\n" + "    " + t.toString());
         System.out.println(" Now you have " + arrList.size() + " tasks in the list.");
         printLine();
+        System.out.println();
     }
 
     private static void checkValidDelete(int taskNumber) throws IndexOutOfBoundsListException, EmptyListException {
@@ -142,12 +144,14 @@ public class Erel {
             printLine();
             System.out.println(" Task is already marked:\n" + "    " + arrList.get(taskNumber).toString());
             printLine();
+            System.out.println();
             return;
         }
         arrList.get(taskNumber).setDone(true);
         printLine();
         System.out.println(" Nice! I've marked this task as done:\n" + "    " + arrList.get(taskNumber).toString());
         printLine();
+        System.out.println();
     }
 
     private static void updateUnmark(String input) {
@@ -156,12 +160,14 @@ public class Erel {
             printLine();
             System.out.println(" Task is already unmarked:\n" + "    " + arrList.get(taskNumber).toString());
             printLine();
+            System.out.println();
             return;
         }
         arrList.get(taskNumber).setDone(false);
         printLine();
         System.out.println(" Ok, I've marked this task as not done yet:\n" + "    " + arrList.get(taskNumber).toString());
         printLine();
+        System.out.println();
     }
 
     private static void printLine() {
@@ -173,6 +179,7 @@ public class Erel {
         printLine();
         System.out.println(" Hello! I'm Erel.\n What can I do for you?");
         printLine();
+        System.out.println();
     }
 
     private static void exit() {
@@ -189,6 +196,7 @@ public class Erel {
             System.out.println(" " + counter++ + "." + s.toString());
         }
         printLine();
+        System.out.println();
     }
 
 }
