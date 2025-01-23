@@ -55,15 +55,8 @@ public class Erel {
                         break;
                     }
                     case TODO: {
-                        if (input.length() <= 5) {
-                            throw new ErelException("OOPS!!! The description of a todo cannot be empty.");
-                        }
                         checkValidDescription(input.split(" ",2));
-
-                        arrList.add(new Todo(inputArr[0].substring(5)));
-                        System.out.println(spaces + lines + "\n " + spaces + "Got it. I've added this task:");
-                        System.out.println(spaces + spaces + arrList.get(arrList.size() - 1));
-                        System.out.println(spaces + " Now you have " + arrList.size() + " tasks in the list." + "\n" + spaces + lines + "\n");
+                        insertTodo(inputArr[0].substring(5));
                         break;
                     }
                     case DEADLINE: {
@@ -79,7 +72,7 @@ public class Erel {
                     }
                     case EVENT: {
                         if (inputArr.length < 3 || inputArr[1].length() <= 5 || inputArr[2].length() <= 3) {
-                            throw new ErelException("OOPS!!! An event must include '/from' and '/to'.");
+                            throw new ErelException(" OOPS!!! An event must include '/from' and '/to'.");
                         }
 
                         arrList.add(new Event(inputArr[0].substring(6), inputArr[1].substring(5), inputArr[2].substring(3)));
@@ -92,17 +85,23 @@ public class Erel {
                     }
 
             } catch (ErelException e) {
-                System.out.println(spaces + lines + "\n " + spaces + e.getMessage());
-                System.out.println(spaces + lines + "\n");
-            } catch (IllegalArgumentException e) {
-                System.out.println(spaces + lines + "\n " + spaces + "Invalid command. Please try again.");
-                System.out.println(spaces + lines + "\n");
+                printLine();
+                System.out.println(" OOPS!!! " + e.getMessage());
+                printLine();
             } catch (Exception e) {
                 System.out.println(spaces + lines + "\n " + spaces + "An error occurred: " + e.getMessage());
                 System.out.println(spaces + lines + "\n");
             }
         }
 
+    }
+
+    private static void insertTodo(String substring) {
+        arrList.add(new Todo(substring));
+        printLine();
+        System.out.println(" Got it. I've added this task:\n" + "    " + arrList.get(arrList.size() - 1));
+        System.out.println(" Now you have " + arrList.size() + " tasks in the list." + "\n");
+        printLine();
     }
 
     private static void deleteTask(int taskNumber) {
