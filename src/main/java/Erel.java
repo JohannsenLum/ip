@@ -71,6 +71,55 @@ public class Erel {
         }
     }
 
+
+    /**
+     * Prints a line to format the chat better
+     */
+    private static void printLine() {
+        String lines = "___________________________________________";
+        System.out.println(lines);
+    }
+
+    /**
+     * Prints a customised greeting when the bot first comes online
+     */
+    private static void greet() {
+        printLine();
+        System.out.println(" Hello! I'm Erel.\n What can I do for you?");
+        printLine();
+        System.out.println();
+    }
+
+    /**
+     * Prints a customised exit when the bot shuts down
+     */
+    private static void exit() {
+        printLine();
+        System.out.println(" Bye. Hope to see you again soon!");
+        printLine();
+    }
+
+    /**
+     * Prints the list of task that is in the Task list.
+     */
+    private static void printList() {
+        printLine();
+        System.out.println(" Here are the tasks in your list:");
+        int counter = 1;
+        for (Task s : arrList) {
+            System.out.println(" " + counter++ + "." + s.toString());
+        }
+        printLine();
+        System.out.println();
+    }
+
+    /**
+     * Inserts an Event task into the task list.
+     *
+     * @param inputArr Array of strings containing task details, including description,
+     *                 '/from' time, and '/to' time.
+     * @throws ErelException if the input is invalid or missing necessary components.
+     */
     private static void insertEvent(String[] inputArr) throws ErelException {
         if (inputArr.length < 3 || inputArr[1].length() <= 5 || inputArr[2].length() <= 3) {
             throw new ErelException(" An event must include '/from' and '/to'.");
@@ -79,6 +128,13 @@ public class Erel {
         printInsert();
     }
 
+    /**
+     * Inserts a Deadline task into the task list.
+     *
+     * @param inputArr Array of strings containing task details, including description,
+     *                 '/by'.
+     * @throws ErelException if the input is invalid or missing necessary components.
+     */
     private static void insertDeadline(String[] inputArr) throws ErelException {
         if (inputArr.length < 2 || inputArr[1].length() <= 3) {
             throw new ErelException(" A deadline must include '/by' followed by a time.");
@@ -87,11 +143,19 @@ public class Erel {
         printInsert();
     }
 
+    /**
+     * Inserts a Todo task into the task list.
+     *
+     * @param substring A strings containing task details.
+     */
     private static void insertTodo(String substring) {
         arrList.add(new Todo(substring));
         printInsert();
     }
-
+    /**
+     * Prints the successfully inserted item into the TaskList with
+     * the necessary indentations and lines
+     */
     private static void printInsert() {
         printLine();
         System.out.println(" Got it. I've added this task:\n" + "    " + arrList.get(arrList.size() - 1));
@@ -100,6 +164,12 @@ public class Erel {
         System.out.println();
     }
 
+    /**
+     * Deletes a task from the task list based on the given task number.
+     * Prints a confirmation and the updated number of task in the Task list
+     * after deletion.
+     * @param taskNumber The index of the task to be removed from the task list (0-based index).
+     */
     private static void deleteTask(int taskNumber) {
         Task t = arrList.get(taskNumber);
         arrList.remove(taskNumber);
@@ -110,6 +180,14 @@ public class Erel {
         System.out.println();
     }
 
+    /**
+     * Checks whether a task can be deleted from the task list.
+     * Throws an exception if the task list is empty or if the task number is invalid.
+     *
+     * @param taskNumber The index of the task to be validated for deletion (1-based index).
+     * @throws EmptyListException If the task list is empty.
+     * @throws IndexOutOfBoundsListException If the task number is less than 1 or greater than the size of the task list.
+     */
     private static void checkValidDelete(int taskNumber) throws IndexOutOfBoundsListException, EmptyListException {
         if(arrList.isEmpty()) {
             throw new EmptyListException();
@@ -119,11 +197,30 @@ public class Erel {
         }
     }
 
+    /**
+     * Checks the description of a task to ensure it is not empty.
+     * Throws an exception if the description is missing or only contains whitespace.
+     *
+     * @param inputArr An array of strings where the first element is the command and
+     *                 the second element is the task description.
+     * @throws InvalidDescriptionException If the description is missing or blank.
+     */
     private static void checkValidDescription(String[] inputArr) throws InvalidDescriptionException {
         if (inputArr.length <= 1 || inputArr[1].trim().isEmpty()) {
             throw new InvalidDescriptionException(inputArr[0]);
         }
     }
+
+    /**
+     * Checks whether a task can be marked or unmarked.
+     * Ensures the task list is not empty, the input contains a valid task number,
+     * and the task number is within the bounds of the task list.
+     *
+     * @param input The user input string containing the mark/unmark command and the task number.
+     * @throws EmptyListException If the task list is empty.
+     * @throws InvalidDescriptionException If the task number is missing or blank in the input.
+     * @throws IndexOutOfBoundsListException If the task number is less than 1 or greater than the size of the task list.
+     */
     private static void checkValidMarkUnmark(String input) throws InvalidDescriptionException, IndexOutOfBoundsListException, EmptyListException {
         String[] inputArr = input.split(" ");
         if(arrList.isEmpty()) {
@@ -138,8 +235,15 @@ public class Erel {
         }
     }
 
+    /**
+     * Marks a task from the task list based on the given task number and
+     * if the task is unmarked.
+     * Prints a confirmation and the updated marked task
+     * Prints an error confirmation if the task is already marked
+     * @param input The String index of the task to be marked in the task list.
+     */
     private static void updateMark(String input) {
-        int taskNumber = Integer.parseInt(input.split(" ")[1]) - 1;
+        int taskNumber = Integer.parseInt(input.split(" ")[1]) - 1; //(0-based index)
         if(arrList.get(taskNumber).isDone()){
             printLine();
             System.out.println(" Task is already marked:\n" + "    " + arrList.get(taskNumber).toString());
@@ -154,6 +258,13 @@ public class Erel {
         System.out.println();
     }
 
+    /**
+     * Unmarks a task from the task list based on the given task number and
+     * if the task is marked.
+     * Prints a confirmation and the updated unmarked task
+     * Prints an error confirmation if the task is already unmarked
+     * @param input The String index of the task to be marked in the task list.
+     */
     private static void updateUnmark(String input) {
         int taskNumber = Integer.parseInt(input.split(" ")[1]) - 1;
         if(!arrList.get(taskNumber).isDone()){
@@ -170,34 +281,6 @@ public class Erel {
         System.out.println();
     }
 
-    private static void printLine() {
-        String lines = "___________________________________________";
-        System.out.println(lines);
-    }
-
-    private static void greet() {
-        printLine();
-        System.out.println(" Hello! I'm Erel.\n What can I do for you?");
-        printLine();
-        System.out.println();
-    }
-
-    private static void exit() {
-        printLine();
-        System.out.println(" Bye. Hope to see you again soon!");
-        printLine();
-    }
-
-    private static void printList() {
-        printLine();
-        System.out.println(" Here are the tasks in your list:");
-        int counter = 1;
-        for (Task s : arrList) {
-            System.out.println(" " + counter++ + "." + s.toString());
-        }
-        printLine();
-        System.out.println();
-    }
 
 }
 
