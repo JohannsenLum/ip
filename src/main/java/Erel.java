@@ -10,15 +10,15 @@ public class Erel {
         }
     }
 
+    private static final ArrayList<Task> arrList = new ArrayList<>();
+
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
         String lines = "___________________________________________";
         String spaces = "    ";
 
-        ArrayList<Task> arrList = new ArrayList<>();
-
-        greet();
+        greet(); // Prints greeting
 
         while(true) {
             try {
@@ -35,47 +35,30 @@ public class Erel {
                         return;
                     }
                     case LIST: {
-                        System.out.println(spaces + lines);
-                        System.out.println(spaces + " Here are the tasks in your list:");
-                        int counter = 1;
-                        for (Task s : arrList) {
-                            System.out.println(spaces + " " + counter++ + "." + s.toString());
-                        }
-                        System.out.println(spaces + lines + "\n");
+                        printList();
                         break;
                     }
                     case MARK: {
-                        int taskNumber = Integer.parseInt(input.split(" ")[1]) - 1;
-                        arrList.get(taskNumber).setDone(true);
-                        System.out.println(spaces + lines + "\n " + spaces + "Nice! I've marked this task as done:");
-                        System.out.println(spaces + spaces + arrList.get(taskNumber).toString());
-                        System.out.println(spaces + lines + "\n");
-
+                        checkValidMarkUnmark(input);
+                        updateMark(input);
                         break;
                     }
                     case UNMARK: {
-                        int taskNumber = Integer.parseInt(input.split(" ")[1]) - 1;
-                        arrList.get(taskNumber).setDone(false);
-                        System.out.println(spaces + lines + "\n " + spaces + "Ok, I've marked this task as not done yet:");
-                        System.out.println(spaces + spaces + arrList.get(taskNumber).toString());
-                        System.out.println(spaces + lines + "\n");
-
+                        checkValidMarkUnmark(input);
+                        updateUnmark(input);
                         break;
                     }
                     case DELETE: {
-                        int taskNumber = Integer.parseInt(input.split(" ")[1]) - 1;
-                        Task t = arrList.get(taskNumber);
-                        arrList.remove(taskNumber);
-                        System.out.println(spaces + lines + "\n " + spaces + "Noted. I've removed this task:");
-                        System.out.println(spaces + spaces + t.toString());
-                        System.out.println(spaces + " Now you have " + arrList.size() + " tasks in the list." + "\n" + spaces + lines + "\n");
-
+                        int taskNumber = Integer.parseInt(input.split(" ")[1]);
+                        checkValidDelete(taskNumber);
+                        deleteTask(taskNumber-1);
                         break;
                     }
                     case TODO: {
                         if (input.length() <= 5) {
                             throw new ErelException("OOPS!!! The description of a todo cannot be empty.");
                         }
+                        checkValidDescription(input.split(" ",2));
 
                         arrList.add(new Todo(inputArr[0].substring(5)));
                         System.out.println(spaces + lines + "\n " + spaces + "Got it. I've added this task:");
@@ -122,6 +105,72 @@ public class Erel {
 
     }
 
+    private static void deleteTask(int taskNumber) {
+        Task t = arrList.get(taskNumber);
+        arrList.remove(taskNumber);
+        printLine();
+        System.out.println(" Noted. I've removed this task:\n" + "    " + t.toString());
+        System.out.println(" Now you have " + arrList.size() + " tasks in the list." + "\n");
+        printLine();
+
+    }
+
+    private static void checkValidDelete(int taskNumber) throws IndexOutOfBoundsListException, EmptyListException {
+        if(arrList.isEmpty()) {
+            throw new EmptyListException();
+        }
+        if(taskNumber <= 0 || taskNumber > arrList.size()) {
+            throw new IndexOutOfBoundsListException(Integer.toString(taskNumber));
+        }
+    }
+
+    private static void checkValidDescription(String[] inputArr) throws InvalidDescriptionException {
+        if (inputArr.length <= 1 || inputArr[1].trim().isEmpty()) {
+            throw new InvalidDescriptionException(inputArr[0]);
+        }
+    }
+    private static void checkValidMarkUnmark(String input) throws InvalidDescriptionException, IndexOutOfBoundsListException, EmptyListException {
+        String[] inputArr = input.split(" ");
+        if(arrList.isEmpty()) {
+            throw new EmptyListException();
+        }
+        if(inputArr.length < 2 || inputArr[1].trim().isEmpty()) {
+            throw new InvalidDescriptionException(inputArr[0]);
+        }
+        int taskNumber = Integer.parseInt(inputArr[1]);
+        if(taskNumber <= 0 || taskNumber > arrList.size()) {
+            throw new IndexOutOfBoundsListException(inputArr[1]);
+        }
+    }
+
+    private static void updateMark(String input) {
+        int taskNumber = Integer.parseInt(input.split(" ")[1]) - 1;
+        if(arrList.get(taskNumber).isDone()){
+            printLine();
+            System.out.println(" Task is already marked:\n" + "    " + arrList.get(taskNumber).toString());
+            printLine();
+            return;
+        }
+        arrList.get(taskNumber).setDone(true);
+        printLine();
+        System.out.println(" Nice! I've marked this task as done:\n" + "    " + arrList.get(taskNumber).toString());
+        printLine();
+    }
+
+    private static void updateUnmark(String input) {
+        int taskNumber = Integer.parseInt(input.split(" ")[1]) - 1;
+        if(!arrList.get(taskNumber).isDone()){
+            printLine();
+            System.out.println(" Task is already unmarked:\n" + "    " + arrList.get(taskNumber).toString());
+            printLine();
+            return;
+        }
+        arrList.get(taskNumber).setDone(false);
+        printLine();
+        System.out.println(" Ok, I've marked this task as not done yet:\n" + "    " + arrList.get(taskNumber).toString());
+        printLine();
+    }
+
     private static void printLine() {
         String lines = "___________________________________________";
         System.out.println(lines);
@@ -139,6 +188,15 @@ public class Erel {
         printLine();
     }
 
+    private static void printList() {
+        printLine();
+        System.out.println(" Here are the tasks in your list:");
+        int counter = 1;
+        for (Task s : arrList) {
+            System.out.println(" " + counter++ + "." + s.toString());
+        }
+        printLine();
+    }
 
 }
 
