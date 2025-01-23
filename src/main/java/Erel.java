@@ -11,15 +11,14 @@ public class Erel {
     }
 
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
         String lines = "___________________________________________";
         String spaces = "    ";
 
         ArrayList<Task> arrList = new ArrayList<>();
 
-        System.out.println(spaces+ lines + "\n " + spaces + "Hello! I'm Erel\n " + spaces + "What can I do for you?\n" + spaces + lines + "\n");
-
-
+        greet();
 
         while(true) {
             try {
@@ -32,7 +31,7 @@ public class Erel {
 
                 switch (command) {
                     case BYE: {
-                        System.out.println(spaces + lines + "\n " + spaces + "Bye. Hope to see you again soon!\n" + spaces + lines);
+                        exit();
                         return;
                     }
                     case LIST: {
@@ -122,5 +121,24 @@ public class Erel {
         }
 
     }
+
+    private static void printLine() {
+        String lines = "___________________________________________";
+        System.out.println(lines);
+    }
+
+    private static void greet() {
+        printLine();
+        System.out.println(" Hello! I'm Erel.\n What can I do for you?");
+        printLine();
+    }
+
+    private static void exit() {
+        printLine();
+        System.out.println(" Bye. Hope to see you again soon!");
+        printLine();
+    }
+
+
 }
 
