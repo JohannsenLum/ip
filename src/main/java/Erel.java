@@ -60,14 +60,8 @@ public class Erel {
                         break;
                     }
                     case DEADLINE: {
-                        if (inputArr.length < 2 || inputArr[1].length() <= 3) {
-                            throw new ErelException("OOPS!!! A deadline must include '/by' followed by a time.");
-                        }
-
-                        arrList.add(new Deadline(inputArr[0].substring(9), inputArr[1].substring(3)));
-                        System.out.println(spaces + lines + "\n " + spaces + "Got it. I've added this task:");
-                        System.out.println(spaces + spaces + arrList.get(arrList.size() - 1));
-                        System.out.println(spaces + " Now you have " + arrList.size() + " tasks in the list." + "\n" + spaces + lines + "\n");
+                        checkValidDescription(input.split(" ",2));
+                        insertDeadline(inputArr);
                         break;
                     }
                     case EVENT: {
@@ -96,12 +90,25 @@ public class Erel {
 
     }
 
+    private static void insertDeadline(String[] inputArr) throws ErelException {
+        if (inputArr.length < 2 || inputArr[1].length() <= 3) {
+            throw new ErelException(" A deadline must include '/by' followed by a time.");
+        }
+
+        arrList.add(new Deadline(inputArr[0].substring(9), inputArr[1].substring(3)));
+        printInsert();
+    }
+
+    private static void printInsert() {
+        printLine();
+        System.out.println("Got it. I've added this task:\n" + "    " + arrList.get(arrList.size() - 1));
+        System.out.println( " Now you have " + arrList.size() + " tasks in the list.");
+        printLine();
+    }
+
     private static void insertTodo(String substring) {
         arrList.add(new Todo(substring));
-        printLine();
-        System.out.println(" Got it. I've added this task:\n" + "    " + arrList.get(arrList.size() - 1));
-        System.out.println(" Now you have " + arrList.size() + " tasks in the list." + "\n");
-        printLine();
+        printInsert();
     }
 
     private static void deleteTask(int taskNumber) {
@@ -109,9 +116,8 @@ public class Erel {
         arrList.remove(taskNumber);
         printLine();
         System.out.println(" Noted. I've removed this task:\n" + "    " + t.toString());
-        System.out.println(" Now you have " + arrList.size() + " tasks in the list." + "\n");
+        System.out.println(" Now you have " + arrList.size() + " tasks in the list.");
         printLine();
-
     }
 
     private static void checkValidDelete(int taskNumber) throws IndexOutOfBoundsListException, EmptyListException {
