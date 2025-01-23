@@ -2,21 +2,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Erel {
-    public enum Command {
-        BYE, LIST, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT;
-
-        public static Command fromString(String input) throws IllegalArgumentException {
-            return Command.valueOf(input.toUpperCase());
-        }
-    }
-
     private static final ArrayList<Task> arrList = new ArrayList<>();
 
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
-        String lines = "___________________________________________";
-        String spaces = "    ";
 
         greet(); // Prints greeting
 
@@ -26,8 +15,7 @@ public class Erel {
                 String action = input.split(" ")[0];
                 String[] inputArr = input.split(" /");
 
-                // Parse action into enum Commands
-                Command command = Command.fromString(action);
+                Command command = Command.fromString(action); // Parse action into enum Commands
 
                 switch (command) {
                     case BYE: {
@@ -65,37 +53,42 @@ public class Erel {
                         break;
                     }
                     case EVENT: {
-                        if (inputArr.length < 3 || inputArr[1].length() <= 5 || inputArr[2].length() <= 3) {
-                            throw new ErelException(" OOPS!!! An event must include '/from' and '/to'.");
-                        }
-
-                        arrList.add(new Event(inputArr[0].substring(6), inputArr[1].substring(5), inputArr[2].substring(3)));
-                        System.out.println(spaces + lines + "\n " + spaces + "Got it. I've added this task:");
-                        System.out.println(spaces + spaces + arrList.get(arrList.size() - 1));
-                        System.out.println(spaces + " Now you have " + arrList.size() + " tasks in the list." + "\n" + spaces + lines + "\n");
+                        checkValidDescription(input.split(" ",2));
+                        insertEvent(inputArr);
                         break;
                     }
-                    default: throw new Exception(" OOPS!!! Something went wrong. Please try again.");
+                    default: throw new ErelException(" Something went wrong. Please try again.");
                     }
-
             } catch (ErelException e) {
                 printLine();
                 System.out.println(" OOPS!!! " + e.getMessage());
                 printLine();
             } catch (Exception e) {
-                System.out.println(spaces + lines + "\n " + spaces + "An error occurred: " + e.getMessage());
-                System.out.println(spaces + lines + "\n");
+                printLine();
+                System.out.println(" An error occurred: " + e.getMessage());
+                printLine();
             }
         }
+    }
 
+    private static void insertEvent(String[] inputArr) throws ErelException {
+        if (inputArr.length < 3 || inputArr[1].length() <= 5 || inputArr[2].length() <= 3) {
+            throw new ErelException(" An event must include '/from' and '/to'.");
+        }
+        arrList.add(new Event(inputArr[0].substring(6), inputArr[1].substring(5), inputArr[2].substring(3)));
+        printInsert();
     }
 
     private static void insertDeadline(String[] inputArr) throws ErelException {
         if (inputArr.length < 2 || inputArr[1].length() <= 3) {
             throw new ErelException(" A deadline must include '/by' followed by a time.");
         }
-
         arrList.add(new Deadline(inputArr[0].substring(9), inputArr[1].substring(3)));
+        printInsert();
+    }
+
+    private static void insertTodo(String substring) {
+        arrList.add(new Todo(substring));
         printInsert();
     }
 
@@ -104,11 +97,6 @@ public class Erel {
         System.out.println("Got it. I've added this task:\n" + "    " + arrList.get(arrList.size() - 1));
         System.out.println( " Now you have " + arrList.size() + " tasks in the list.");
         printLine();
-    }
-
-    private static void insertTodo(String substring) {
-        arrList.add(new Todo(substring));
-        printInsert();
     }
 
     private static void deleteTask(int taskNumber) {
