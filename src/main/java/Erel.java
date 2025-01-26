@@ -3,9 +3,13 @@ import java.util.Scanner;
 
 public class Erel {
     private static final ArrayList<Task> arrList = new ArrayList<>();
+    private static final Storage storage = new Storage("./data/erel.txt");
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
+        //System.out.println(storage.loadTasksFromFile());
+        arrList.addAll(storage.loadTasksFromFile());
 
         greet(); // Prints greeting
 
@@ -18,47 +22,54 @@ public class Erel {
                 Command command = Command.fromString(action); // Parse action into enum Commands
 
                 switch (command) {
-                    case BYE: {
-                        exit();
-                        return;
-                    }
-                    case LIST: {
-                        printList();
-                        break;
-                    }
-                    case MARK: {
-                        checkValidMarkUnmark(input);
-                        updateMark(input);
-                        break;
-                    }
-                    case UNMARK: {
-                        checkValidMarkUnmark(input);
-                        updateUnmark(input);
-                        break;
-                    }
-                    case DELETE: {
-                        int taskNumber = Integer.parseInt(input.split(" ")[1]);
-                        checkValidDelete(taskNumber);
-                        deleteTask(taskNumber-1);
-                        break;
-                    }
-                    case TODO: {
-                        checkValidDescription(input.split(" ",2));
-                        insertTodo(inputArr[0].substring(5));
-                        break;
-                    }
-                    case DEADLINE: {
-                        checkValidDescription(input.split(" ",2));
-                        insertDeadline(inputArr);
-                        break;
-                    }
-                    case EVENT: {
-                        checkValidDescription(input.split(" ",2));
-                        insertEvent(inputArr);
-                        break;
-                    }
-                    default: throw new ErelException(" Something went wrong. Please try again.");
-                    }
+                case BYE: {
+                    storage.saveTasksToFile(arrList);
+                    exit();
+                    return;
+                }
+                case LIST: {
+                    printList();
+                    break;
+                }
+                case MARK: {
+                    checkValidMarkUnmark(input);
+                    updateMark(input);
+                    storage.saveTasksToFile(arrList);
+                    break;
+                }
+                case UNMARK: {
+                    checkValidMarkUnmark(input);
+                    updateUnmark(input);
+                    storage.saveTasksToFile(arrList);
+                    break;
+                }
+                case DELETE: {
+                    int taskNumber = Integer.parseInt(input.split(" ")[1]);
+                    checkValidDelete(taskNumber);
+                    deleteTask(taskNumber-1);
+                    storage.saveTasksToFile(arrList);
+                    break;
+                }
+                case TODO: {
+                    checkValidDescription(input.split(" ",2));
+                    insertTodo(inputArr[0].substring(5));
+                    storage.saveTasksToFile(arrList);
+                    break;
+                }
+                case DEADLINE: {
+                    checkValidDescription(input.split(" ",2));
+                    insertDeadline(inputArr);
+                    storage.saveTasksToFile(arrList);
+                    break;
+                }
+                case EVENT: {
+                    checkValidDescription(input.split(" ",2));
+                    insertEvent(inputArr);
+                    storage.saveTasksToFile(arrList);
+                    break;
+                }
+                default: throw new ErelException(" Something went wrong. Please try again.");
+                }
             } catch (ErelException e) {
                 printLine();
                 System.out.println(" OOPS!!! " + e.getMessage());
