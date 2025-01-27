@@ -47,6 +47,9 @@ public class Parser {
             return new PrintListAction();
         case BYE:
             return new ExitAction();
+        case FIND:
+            checkValidDescription(input.split(" ", 2));
+            return new FindAction(details);
         default:
             throw new ErelException("Unknown command: " + action);
         }

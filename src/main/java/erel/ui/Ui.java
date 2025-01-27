@@ -3,6 +3,7 @@ package erel.ui;
 import erel.task.Task;
 import erel.task.TaskList;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Ui {
@@ -111,6 +112,24 @@ public class Ui {
     public void printExceptionError(String message) {
         printLine();
         System.out.println(" An error occurred: " + message);
+        printLine();
+    }
+
+    /**
+     * Displays the list of tasks that match the search keyword.
+     *
+     * @param tasks The list of tasks that match the keyword.
+     */
+    public void printMatchingTasks(List<Task> tasks) {
+        printLine();
+        if(tasks.isEmpty()) {
+            System.out.println(" No tasks found.");
+        } else {
+            System.out.println(" Here are the tasks in your list:");
+            for(int i = 0; i < tasks.size(); i++){
+                System.out.println(" " + (i+1) + "." + tasks.get(i).toString());
+            }
+        }
         printLine();
     }
 }
