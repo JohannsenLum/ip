@@ -43,7 +43,6 @@ public class Erel {
                     return;
                 }
             } catch (ErelException e) {
-
                 ui.printErelError(e.getMessage());
             } catch (Exception e) {
                 ui.printExceptionError(e.getMessage());
