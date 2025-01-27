@@ -37,4 +37,20 @@ public class TaskList {
     public List<Task> getAllTasks() {
         return tasks;
     }
+
+    /**
+     * Finds tasks whose descriptions contain the given keyword.
+     *
+     * @param keyword The keyword to search for.
+     * @return A list of tasks containing the keyword.
+     */
+    public List<Task> findTasks(String keyword) {
+        List<Task> result = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.getName().toLowerCase().contains(keyword.toLowerCase())) {
+                result.add(task);
+            }
+        }
+        return result;
+    }
 }
