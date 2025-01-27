@@ -1,5 +1,4 @@
-T | 1 | read book
-E | 0 | project meeting | 2025-08-06 13:00 | 2025-08-06 18:00
+E | 1 | project meeting | 2025-08-06 13:00 | 2025-08-06 18:00
 T | 0 | read iLoveJavaBook
 D | 1 | return book | 2019-12-06 18:00
 D | 0 | return x | 2016-12-02 16:00
@@ -7,8 +6,9 @@ T | 0 | hello word
 T | 0 | bye bye world
 D | 0 | cally wifey | 2025-01-27 10:00
 D | 0 | cally x | 2025-01-27 10:00
-D | 0 | cally 2 | 2025-01-26 17:00
 T | 0 | hello
 D | 0 | return book | 2000-05-29 15:00
 D | 0 | return watch | 2030-05-28 18:00
-E | 0 | katon meeting | 2025-01-25 14:00 | 2025-01-25 17:00
+T | 0 | hello
+D | 0 | deadline hexacube | 2000-05-27 18:00
+E | 0 | event ragandflag | 2012-05-02 18:00 | 2015-05-20 20:00
