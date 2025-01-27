@@ -1,4 +1,13 @@
+package erel;
+
 import java.io.IOException;
+import erel.task.TaskList;
+import erel.storage.Storage;
+import erel.ui.Ui;
+import erel.command.Action;
+import erel.command.ExitAction;
+import erel.parser.Parser;
+import erel.exception.ErelException;
 
 public class Erel {
     private static Storage storage;

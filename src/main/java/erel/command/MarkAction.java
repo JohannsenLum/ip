@@ -1,3 +1,9 @@
+package erel.command;
+
+import erel.storage.Storage;
+import erel.task.TaskList;
+import erel.ui.Ui;
+
 public class MarkAction implements Action {
     private int taskNumber;
 

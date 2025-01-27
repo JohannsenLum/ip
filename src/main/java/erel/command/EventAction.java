@@ -1,3 +1,10 @@
+package erel.command;
+
+import erel.storage.Storage;
+import erel.task.Event;
+import erel.task.TaskList;
+import erel.ui.Ui;
+
 import java.time.LocalDateTime;
 
 public class EventAction implements Action {
