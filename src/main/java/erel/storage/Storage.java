@@ -1,17 +1,21 @@
 package erel.storage;
 
-import erel.task.Task;
-import erel.task.TaskList;
-
-import java.io.File;
-import java.io.BufferedWriter;
 import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import erel.task.Task;
+import erel.task.TaskList;
+
+/**
+ * The `Storage` class handles reading from and writing to a file to persist task data. It ensures that tasks are saved
+ * to a file and can be loaded back into the application.
+ */
 public class Storage {
     private final String filePath;
 
@@ -39,6 +43,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads the list of tasks from the file. If the file does not exist, returns an empty list.
+     *
+     * @return A list of tasks loaded from the file.
+     * @throws IOException If an error occurs while reading the file.
+     */
     public List<Task> loadTasksFromFile() throws IOException {
         List<Task> tasks = new ArrayList<>();
         File file = new File(filePath);
@@ -49,7 +59,7 @@ public class Storage {
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
-            while ((line = reader.readLine()) != null){
+            while ((line = reader.readLine()) != null) {
                 Task task = Task.fromFileFormat(line);
 
                 if (task != null) {
