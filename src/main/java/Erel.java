@@ -1,3 +1,6 @@
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -135,8 +138,15 @@ public class Erel {
         if (inputArr.length < 3 || inputArr[1].length() <= 5 || inputArr[2].length() <= 3) {
             throw new ErelException(" An event must include '/from' and '/to'.");
         }
-        arrList.add(new Event(inputArr[0].substring(6), inputArr[1].substring(5), inputArr[2].substring(3)));
-        printInsert();
+
+        try {
+            LocalDateTime from = Parser.parseDateTime(inputArr[1].substring(5));
+            LocalDateTime to = Parser.parseDateTime(inputArr[2].substring(3));
+            arrList.add(new Event(inputArr[0].substring(9), from, to));
+            printInsert();
+        } catch (DateTimeParseException e) {
+            throw new ErelException("Invalid date format. Please use \n'yyyy-MM-dd HHmm' (e.g. , 2019-12-02 18:00).");
+        }
     }
 
     /**
@@ -150,8 +160,14 @@ public class Erel {
         if (inputArr.length < 2 || inputArr[1].length() <= 3) {
             throw new ErelException(" A deadline must include '/by' followed by a time.");
         }
-        arrList.add(new Deadline(inputArr[0].substring(9), inputArr[1].substring(3)));
-        printInsert();
+
+        try {
+            LocalDateTime by = Parser.parseDateTime(inputArr[1].substring(3));
+            arrList.add(new Deadline(inputArr[0].substring(9), by));
+            printInsert();
+        } catch (DateTimeParseException e) {
+            throw new ErelException("Invalid date format. Please use \n'yyyy-MM-dd HHmm' (e.g. , 2019-12-02 18:00).");
+        }
     }
 
     /**
