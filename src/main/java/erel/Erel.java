@@ -1,13 +1,14 @@
 package erel;
 
-import java.io.IOException;
-import erel.task.TaskList;
-import erel.storage.Storage;
-import erel.ui.Ui;
 import erel.command.Action;
 import erel.command.ExitAction;
-import erel.parser.Parser;
 import erel.exception.ErelException;
+import erel.parser.Parser;
+import erel.storage.Storage;
+import erel.task.TaskList;
+import erel.ui.Ui;
+
+import java.io.IOException;
 
 public class Erel {
     private static Storage storage;
@@ -23,6 +24,10 @@ public class Erel {
             ui.printLoadingError();
             tasks = new TaskList();
         }
+    }
+
+    public static void main(String[] args) {
+        new Erel("./data/erel.txt").run();
     }
 
     public void run() {
@@ -44,9 +49,5 @@ public class Erel {
                 ui.printExceptionError(e.getMessage());
             }
         }
-    };
-
-    public static void main(String[] args) {
-        new Erel("./data/erel.txt").run();
     }
 }

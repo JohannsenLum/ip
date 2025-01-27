@@ -19,36 +19,36 @@ public class Parser {
         String details = parts.length > 1 ? parts[1] : "";
 
         switch (Command.fromString(action)) {
-            case MARK:
-                checkValidMarkUnmark(input, tasks);
-                return new MarkAction(Integer.parseInt(details) - 1);
-            case UNMARK:
-                checkValidMarkUnmark(input, tasks);
-                return new UnmarkAction(Integer.parseInt(details) - 1);
-            case DELETE:
-                checkValidDelete(Integer.parseInt(details), tasks);
-                return new DeleteAction(Integer.parseInt(details) - 1);
-            case TODO:
-                checkValidDescription(input.split(" ", 2));
-                return new TodoAction(input.substring(5));
-            case DEADLINE:
-                checkValidDeadline(input);
-                String[] deadlineParts = input.split(" /by ");
-                LocalDateTime by = parseDateTime(deadlineParts[1]);
-                return new DeadlineAction(deadlineParts[0].substring(9), by);
+        case MARK:
+            checkValidMarkUnmark(input, tasks);
+            return new MarkAction(Integer.parseInt(details) - 1);
+        case UNMARK:
+            checkValidMarkUnmark(input, tasks);
+            return new UnmarkAction(Integer.parseInt(details) - 1);
+        case DELETE:
+            checkValidDelete(Integer.parseInt(details), tasks);
+            return new DeleteAction(Integer.parseInt(details) - 1);
+        case TODO:
+            checkValidDescription(input.split(" ", 2));
+            return new TodoAction(input.substring(5));
+        case DEADLINE:
+            checkValidDeadline(input);
+            String[] deadlineParts = input.split(" /by ");
+            LocalDateTime by = parseDateTime(deadlineParts[1]);
+            return new DeadlineAction(deadlineParts[0].substring(9), by);
 
-            case EVENT:
-                checkValidEvent(input);
-                String[] eventParts = input.split(" /from | /to ");
-                LocalDateTime from = parseDateTime(eventParts[1]);
-                LocalDateTime to = parseDateTime(eventParts[2]);
-                return new EventAction(eventParts[0].substring(6), from, to);
-            case LIST:
-                return new PrintListAction();
-            case BYE:
-                return new ExitAction();
-            default:
-                throw new ErelException("Unknown command: " + action);
+        case EVENT:
+            checkValidEvent(input);
+            String[] eventParts = input.split(" /from | /to ");
+            LocalDateTime from = parseDateTime(eventParts[1]);
+            LocalDateTime to = parseDateTime(eventParts[2]);
+            return new EventAction(eventParts[0].substring(6), from, to);
+        case LIST:
+            return new PrintListAction();
+        case BYE:
+            return new ExitAction();
+        default:
+            throw new ErelException("Unknown command: " + action);
         }
     }
 
