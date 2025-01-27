@@ -1,3 +1,10 @@
+package erel.command;
+
+import erel.storage.Storage;
+import erel.task.Task;
+import erel.task.TaskList;
+import erel.ui.Ui;
+
 public class DeleteAction implements Action {
     private int taskNumber;
 

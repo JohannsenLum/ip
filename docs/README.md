@@ -1,4 +1,4 @@
-# Erel User Guide
+# erel.erel User Guide
 
 // Update the title above to match the actual product name
 

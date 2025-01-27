@@ -1,4 +1,3 @@
-E | 1 | project meeting | 2025-08-06 13:00 | 2025-08-06 18:00
 T | 0 | read iLoveJavaBook
 D | 1 | return book | 2019-12-06 18:00
 D | 0 | return x | 2016-12-02 16:00

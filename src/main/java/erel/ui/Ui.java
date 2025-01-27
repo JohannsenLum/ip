@@ -1,3 +1,8 @@
+package erel.ui;
+
+import erel.task.Task;
+import erel.task.TaskList;
+
 import java.util.Scanner;
 
 public class Ui {
