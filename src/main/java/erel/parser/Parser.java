@@ -10,6 +10,7 @@ import erel.command.DeadlineAction;
 import erel.command.DeleteAction;
 import erel.command.EventAction;
 import erel.command.ExitAction;
+import erel.command.FindAction;
 import erel.command.MarkAction;
 import erel.command.PrintListAction;
 import erel.command.TodoAction;
