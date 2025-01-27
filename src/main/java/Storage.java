@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Storage {
-    private String filePath;
+    private final String filePath;
 
     public Storage(String filePath) {
         this.filePath = filePath;
@@ -14,14 +14,14 @@ public class Storage {
      *
      * @param tasks The list of tasks to save
      */
-    public void saveTasksToFile(List<Task> tasks) {
+    public void saveTasksToFile(TaskList tasks) {
         File folder = new File("./data");
         if (!folder.exists()) {
             folder.mkdir();
         }
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            for (Task task : tasks) {
+            for (Task task : tasks.getAllTasks()) {
                 writer.write(task.toFileFormat() + System.lineSeparator());
             }
         } catch (IOException e) {
@@ -29,7 +29,7 @@ public class Storage {
         }
     }
 
-    public List<Task> loadTasksFromFile() {
+    public List<Task> loadTasksFromFile() throws IOException {
         List<Task> tasks = new ArrayList<>();
         File file = new File(filePath);
 
@@ -47,9 +47,8 @@ public class Storage {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Error loading tasks from file" + e.getMessage());
+            throw new IOException(e);
         }
-
         return tasks;
     }
 }
