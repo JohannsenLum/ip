@@ -43,7 +43,18 @@ public class Erel {
      * @param args Command-line arguments (not used)
      */
     public static void main(String[] args) {
-        new Erel("./data/erel.txt").run();
+        System.out.println("Hello!");
+        //new Erel("./data/erel.txt").run();
+    }
+
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        return "Duke heard: " + input;
+    }
+    public Erel() {
+        this("./data/erel.txt");
     }
 
     /**
