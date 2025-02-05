@@ -26,11 +26,11 @@ public class TodoAction implements Action {
      * @throws Exception If an error occurs during the execution of the action.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
         Todo todo = new Todo(description);
         tasks.addTask(todo);
         storage.saveTasksToFile(tasks);
-        ui.printInsert(todo, tasks);
+        return ui.printInsert(todo, tasks);
 
     }
 }

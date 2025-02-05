@@ -19,7 +19,7 @@ public class PrintListAction implements Action {
      * @throws Exception If an error occurs during the execution of the action.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
-        ui.printList(tasks);
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
+        return ui.printList(tasks);
     }
 }

@@ -26,10 +26,12 @@ public class DeleteAction implements Action {
      * @throws Exception If an error occurs during the execution of the action (e.g., invalid task number).
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
         Task t = tasks.getTask(taskNumber);
         tasks.deleteTask(taskNumber);
-        ui.printDelete(t, tasks);
+
         storage.saveTasksToFile(tasks);
+
+        return ui.printDelete(t, tasks);
     }
 }

@@ -13,6 +13,10 @@ public class Ui {
         scanner = new Scanner(System.in);
     }
 
+    public String readCommand() {
+        return scanner.nextLine();
+    }
+
     /**
      * Prints a line to format the chat better
      */
@@ -23,96 +27,122 @@ public class Ui {
 
     /**
      * Prints a customised greeting when the bot first comes online
+     *
+     * @return
      */
-    public void greet() {
+    public String greet() {
         printLine();
         System.out.println(" Hello! I'm Erel.\n What can I do for you?");
         printLine();
         System.out.println();
+        return " Hello! I'm Erel.\n What can I do for you?";
     }
 
     /**
      * Prints a customised exit when the bot shuts down
      */
-    public void exit() {
+    public String exit() {
         printLine();
         System.out.println(" Bye. Hope to see you again soon!");
         printLine();
+        return " Bye. Hope to see you again soon!";
     }
 
 
-    public void printList(TaskList tasks) {
+    public String printList(TaskList tasks) {
+        if (tasks.isEmpty()) {
+            return "Your task list is empty!";
+        }
+
+        StringBuilder output = new StringBuilder();
+        output.append("Here are the tasks in your list:\n");
+
         printLine();
         System.out.println(" Here are the tasks in your list:");
         for(int i = 0; i < tasks.size(); i++){
             System.out.println(" " + (i+1) + "." + tasks.getTask(i).toString());
+            output.append(i + 1).append(". ").append(tasks.getTask(i).toString()).append("\n");
         }
         printLine();
         System.out.println();
+
+        return output.toString();
     }
 
-    public void printInsert(Task task, TaskList tasks) {
+    public String printInsert(Task task, TaskList tasks) {
         printLine();
         System.out.println(" Got it. I've added this task:\n" + "    " + task);
         System.out.println( " Now you have " + tasks.size() + " tasks in the list.");
         printLine();
         System.out.println();
+
+        return " Got it. I've added this task:\n" + "    " + task +
+                " Now you have " + tasks.size() + " tasks in the list.";
     }
 
-    public void printDelete(Task task, TaskList tasks) {
+    public String printDelete(Task task, TaskList tasks) {
         printLine();
         System.out.println(" Noted. I've removed this task:\n" + "    " + task.toString());
         System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
         printLine();
         System.out.println();
+
+        return " Noted. I've removed this task:\n" + "    " + task.toString() +
+                "now" + " I've removed this task:\n" + "    " + task;
     }
 
-    public void printMark(TaskList tasks, int index) {
+    public String printMark(TaskList tasks, int index) {
         printLine();
         System.out.println(" Nice! I've marked this task as done:\n" + "    " + tasks.getTask(index).toString());
         printLine();
         System.out.println();
+
+        return " Nice! I've marked this task as done:\n" + "    " + tasks.getTask(index).toString();
     }
 
-    public void printUnmark(TaskList tasks, int index) {
+    public String printUnmark(TaskList tasks, int index) {
         printLine();
         System.out.println(" Ok, I've marked this task as not done yet:\n" + "    " + tasks.getTask(index).toString());
         printLine();
         System.out.println();
+
+        return " Ok, I've marked this task as not done yet:\n" + "    " + tasks.getTask(index).toString();
     }
 
-    public void printLoadingError() {
+    public String printLoadingError() {
         System.out.println("Error loading tasks from file");
+        return "Error loading tasks from file";
     }
 
-    public void printMarkError(TaskList tasks, int taskNumber) {
+    public String printMarkError(TaskList tasks, int taskNumber) {
         printLine();
         System.out.println(" Task is already marked:\n" + "    " + tasks.getTask(taskNumber).toString());
         printLine();
         System.out.println();
+
+        return " Task is already marked:\n" + "    " + tasks.getTask(taskNumber).toString();
     }
 
-    public void printUnMarkError(TaskList tasks, int taskNumber) {
+    public String printUnMarkError(TaskList tasks, int taskNumber) {
         printLine();
         System.out.println(" Task is already unmarked:\n" + "    " + tasks.getTask(taskNumber).toString());
         printLine();
         System.out.println();
+        return " Task is already unmarked:\n" + "    " + tasks.getTask(taskNumber).toString();
     }
 
-    public String readCommand() {
-        return scanner.nextLine();
-    }
-
-    public void printErelError(String message) {
+    public String printErelError(String message) {
         printLine();
         System.out.println(" OOPS!!! " + message);
         printLine();
+        return " OOPS!!! " + message;
     }
 
-    public void printExceptionError(String message) {
+    public String printExceptionError(String message) {
         printLine();
         System.out.println(" An error occurred: " + message);
         printLine();
+        return " An error occurred: " + message;
     }
 
     /**
@@ -120,16 +150,23 @@ public class Ui {
      *
      * @param tasks The list of tasks that match the keyword.
      */
-    public void printMatchingTasks(List<Task> tasks) {
+    public String printMatchingTasks(List<Task> tasks) {
         printLine();
         if(tasks.isEmpty()) {
             System.out.println(" No tasks found.");
-        } else {
-            System.out.println(" Here are the tasks in your list:");
-            for(int i = 0; i < tasks.size(); i++){
-                System.out.println(" " + (i+1) + "." + tasks.get(i).toString());
-            }
+            return "No tasks found.";
         }
+        StringBuilder output = new StringBuilder();
+        output.append("Here are the matching tasks in your list:\n");
+
+        System.out.println(" Here are the tasks in your list:");
+        for(int i = 0; i < tasks.size(); i++){
+            System.out.println(" " + (i+1) + "." + tasks.get(i).toString());
+            output.append(i + 1).append(". ").append(tasks.get(i).toString()).append("\n");
+        }
+
         printLine();
+
+        return output.toString();
     }
 }

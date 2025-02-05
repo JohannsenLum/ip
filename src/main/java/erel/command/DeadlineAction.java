@@ -29,10 +29,11 @@ public class DeadlineAction implements Action {
      * @param storage The storage for saving the updated task list.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         Deadline deadline = new Deadline(description, by);
         tasks.addTask(deadline);
-        ui.printInsert(deadline, tasks);
         storage.saveTasksToFile(tasks);
+
+        return ui.printInsert(deadline, tasks);
     }
 }

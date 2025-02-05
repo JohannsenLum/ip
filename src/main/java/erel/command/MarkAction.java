@@ -25,13 +25,15 @@ public class MarkAction implements Action {
      * @throws Exception If an error occurs during the execution of the action.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
         if(tasks.getTask(taskNumber).isDone()){
-            ui.printMarkError(tasks, taskNumber);
-            return;
+            return ui.printMarkError(tasks, taskNumber);
+
         }
         tasks.getTask(taskNumber).setDone(true);
-        ui.printMark(tasks, taskNumber);
+
         storage.saveTasksToFile(tasks);
+
+        return ui.printMark(tasks, taskNumber);
     }
 }

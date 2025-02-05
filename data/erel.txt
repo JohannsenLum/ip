@@ -12,3 +12,5 @@ T | 0 | hello
 D | 0 | deadline hexacube | 2000-05-27 18:00
 E | 0 | event ragandflag | 2012-05-02 18:00 | 2015-05-20 20:00
 T | 0 | read book
+T | 0 | read iLoveJavaBooko
+T | 0 | e
