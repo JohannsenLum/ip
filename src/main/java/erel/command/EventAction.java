@@ -32,10 +32,12 @@ public class EventAction implements Action {
      * @throws Exception If an error occurs during the execution of the action.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
         Event event = new Event(description, from, to);
         tasks.addTask(event);
-        ui.printInsert(event, tasks);
+
         storage.saveTasksToFile(tasks);
+
+        return ui.printInsert(event, tasks);
     }
 }

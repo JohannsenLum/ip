@@ -31,9 +31,12 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    /** Injects the Duke instance */
-    public void setDuke(Erel d) {
-        erel = d;
+    /** Injects the Erel instance */
+    public void setErel(Erel e) {
+        erel = e;
+        dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog(erel.greet(), dukeImage)  // Show greeting on startup
+        );
     }
 
     /**

@@ -27,8 +27,8 @@ public class FindAction implements Action {
      * @throws Exception If an error occurs during the execution of the action.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
         List<Task> matchingTasks = tasks.findTasks(keyword);
-        ui.printMatchingTasks(matchingTasks);
+        return ui.printMatchingTasks(matchingTasks);
     }
 }

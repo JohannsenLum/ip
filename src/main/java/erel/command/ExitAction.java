@@ -3,6 +3,7 @@ package erel.command;
 import erel.storage.Storage;
 import erel.task.TaskList;
 import erel.ui.Ui;
+import javafx.application.Platform;
 
 /**
  * Represents an action to save the latest task list into storage to get ready
@@ -19,8 +20,9 @@ public class ExitAction implements Action {
      * @throws Exception If an error occurs during the execution of the action.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
         storage.saveTasksToFile(tasks);
-        ui.exit();
+        Platform.exit();
+        return ui.exit();
     }
 }

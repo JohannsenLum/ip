@@ -37,24 +37,32 @@ public class Erel {
         }
     }
 
+    public Erel() {
+        this("./data/erel.txt");
+    }
+
+
     /**
      * The entry point of the Erel bot.
      *
      * @param args Command-line arguments (not used)
      */
-    public static void main(String[] args) {
-        System.out.println("Hello!");
-        //new Erel("./data/erel.txt").run();
-    }
 
     /**
      * Generates a response for the user's chat message.
      */
     public String getResponse(String input) {
-        return "Duke heard: " + input;
+        try {
+            Action action = Parser.parseCommand(input, tasks);
+            return action.execute(tasks, ui, storage);  // Ensure execute() returns a String
+        } catch (ErelException e) {
+            return ui.printErelError(e.getMessage());
+        } catch (Exception e) {
+            return ui.printExceptionError(e.getMessage());
+        }
     }
-    public Erel() {
-        this("./data/erel.txt");
+    public String greet() {
+        return ui.greet();
     }
 
     /**

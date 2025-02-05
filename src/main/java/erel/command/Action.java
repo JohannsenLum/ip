@@ -17,5 +17,7 @@ public interface Action {
      * @param storage The storage for saving or loading tasks.
      * @throws Exception If an error occurs during the execution of the action.
      */
-    void execute(TaskList tasks, Ui ui, Storage storage) throws Exception;
+    String execute(TaskList tasks, Ui ui, Storage storage) throws Exception;
+
+
 }

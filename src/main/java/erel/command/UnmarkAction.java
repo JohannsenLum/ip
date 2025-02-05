@@ -25,15 +25,17 @@ public class UnmarkAction implements Action {
      * @throws Exception If an error occurs during the execution of the action.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
         if(!tasks.getTask(taskNumber).isDone()){
-            ui.printUnMarkError(tasks, taskNumber);
-            return;
+            return ui.printUnMarkError(tasks, taskNumber);
+
 
         }
         tasks.getTask(taskNumber).setDone(false);
-        ui.printUnmark(tasks, taskNumber);
+
         storage.saveTasksToFile(tasks);
+
+        return ui.printUnmark(tasks, taskNumber);
     }
 
 }
