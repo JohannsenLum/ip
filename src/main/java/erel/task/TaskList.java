@@ -3,6 +3,10 @@ package erel.task;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a list of tasks. Provides methods to add, remove, retrieve,
+ * and search for tasks within the list.
+ */
 public class TaskList {
     private final List<Task> tasks;
 
