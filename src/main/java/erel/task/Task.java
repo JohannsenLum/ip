@@ -4,7 +4,7 @@ package erel.task;
  * Represents a generic task with a name and a completion status.
  * This class serves as the base class for specific task types like `Todo`, `Deadline`, and `Event`.
  */
-public class Task {
+public abstract class Task {
     private final String name;
     private Boolean isDone;
 

@@ -9,10 +9,19 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/**
+ * The main entry point for the Erel JavaFX application.
+ */
 public class Main extends Application {
 
     private Erel erel = new Erel();
 
+    /**
+     * Starts the JavaFX application by loading the FXML layout for the main window.
+     * It injects an instance of Erel into the controller and sets the scene for the application window.
+     *
+     * @param stage The primary stage for the application, which represents the main window.
+     */
     @Override
     public void start(Stage stage) {
         try {

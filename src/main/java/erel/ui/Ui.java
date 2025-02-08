@@ -6,13 +6,24 @@ import erel.task.TaskList;
 import java.util.List;
 import java.util.Scanner;
 
+
+/**
+ * The `Ui` class is responsible for handling interactions with the user. It takes input from the user and outputs information
+ * in a formatted and user-friendly way. It includes methods for greeting, displaying task lists, adding or removing tasks,
+ * and handling errors.
+ */
 public class Ui {
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public Ui() {
         scanner = new Scanner(System.in);
     }
 
+    /**
+     * Reads a line of input from the user.
+     *
+     * @return The line of input as a string.
+     */
     public String readCommand() {
         return scanner.nextLine();
     }
@@ -26,9 +37,9 @@ public class Ui {
     }
 
     /**
-     * Prints a customised greeting when the bot first comes online
+     * Prints a greeting when the bot first comes online.
      *
-     * @return
+     * @return A greeting message.
      */
     public String greet() {
         printLine();
@@ -39,7 +50,9 @@ public class Ui {
     }
 
     /**
-     * Prints a customised exit when the bot shuts down
+     * Prints a farewell message when the bot shuts down.
+     *
+     * @return A farewell message.
      */
     public String exit() {
         printLine();
@@ -48,7 +61,12 @@ public class Ui {
         return " Bye. Hope to see you again soon!";
     }
 
-
+    /**
+     * Prints the list of tasks currently stored in the task list.
+     *
+     * @param tasks The list of tasks to be displayed.
+     * @return A string representation of the task list.
+     */
     public String printList(TaskList tasks) {
         if (tasks.isEmpty()) {
             return "Your task list is empty!";
@@ -69,6 +87,13 @@ public class Ui {
         return output.toString();
     }
 
+    /**
+     * Prints a message confirming that a task has been added to the list.
+     *
+     * @param task  The task that was added.
+     * @param tasks The task list after the task has been added.
+     * @return A string confirming the task addition.
+     */
     public String printInsert(Task task, TaskList tasks) {
         printLine();
         System.out.println(" Got it. I've added this task:\n" + "    " + task);
@@ -80,6 +105,13 @@ public class Ui {
                 " Now you have " + tasks.size() + " tasks in the list.";
     }
 
+    /**
+     * Prints a message confirming that a task has been removed from the list.
+     *
+     * @param task  The task that was removed.
+     * @param tasks The task list after the task has been removed.
+     * @return A string confirming the task removal.
+     */
     public String printDelete(Task task, TaskList tasks) {
         printLine();
         System.out.println(" Noted. I've removed this task:\n" + "    " + task.toString());
@@ -91,6 +123,13 @@ public class Ui {
                 "\nNow you have " + tasks.size() + " tasks in the list.";
     }
 
+    /**
+     * Prints a message confirming that a task has been marked as done.
+     *
+     * @param tasks The task list containing the marked task.
+     * @param index The index of the task that was marked.
+     * @return A string confirming the task has been marked as done.
+     */
     public String printMark(TaskList tasks, int index) {
         printLine();
         System.out.println(" Nice! I've marked this task as done:\n" + "    " + tasks.getTask(index).toString());
@@ -100,6 +139,13 @@ public class Ui {
         return " Nice! I've marked this task as done:\n" + "    " + tasks.getTask(index).toString();
     }
 
+    /**
+     * Prints a message confirming that a task has been marked as not done yet.
+     *
+     * @param tasks The task list containing the unmarked task.
+     * @param index The index of the task that was unmarked.
+     * @return A string confirming the task has been marked as not done.
+     */
     public String printUnmark(TaskList tasks, int index) {
         printLine();
         System.out.println(" Ok, I've marked this task as not done yet:\n" + "    " + tasks.getTask(index).toString());
@@ -109,11 +155,23 @@ public class Ui {
         return " Ok, I've marked this task as not done yet:\n" + "    " + tasks.getTask(index).toString();
     }
 
+    /**
+     * Prints an error message when there is an issue loading tasks from a file.
+     *
+     * @return A string representing the loading error message.
+     */
     public String printLoadingError() {
         System.out.println("Error loading tasks from file");
         return "Error loading tasks from file";
     }
 
+    /**
+     * Prints an error message when trying to mark an already marked task.
+     *
+     * @param tasks     The task list containing the task.
+     * @param taskNumber The index of the task to mark.
+     * @return A string representing the mark error message.
+     */
     public String printMarkError(TaskList tasks, int taskNumber) {
         printLine();
         System.out.println(" Task is already marked:\n" + "    " + tasks.getTask(taskNumber).toString());
@@ -123,6 +181,13 @@ public class Ui {
         return " Task is already marked:\n" + "    " + tasks.getTask(taskNumber).toString();
     }
 
+    /**
+     * Prints an error message when trying to unmark an already unmarked task.
+     *
+     * @param tasks     The task list containing the task.
+     * @param taskNumber The index of the task to unmark.
+     * @return A string representing the unmark error message.
+     */
     public String printUnMarkError(TaskList tasks, int taskNumber) {
         printLine();
         System.out.println(" Task is already unmarked:\n" + "    " + tasks.getTask(taskNumber).toString());
@@ -131,6 +196,12 @@ public class Ui {
         return " Task is already unmarked:\n" + "    " + tasks.getTask(taskNumber).toString();
     }
 
+    /**
+     * Prints a general error message.
+     *
+     * @param message The error message to be displayed.
+     * @return A string representing the error message.
+     */
     public String printErelError(String message) {
         printLine();
         System.out.println(" OOPS!!! " + message);
@@ -138,6 +209,12 @@ public class Ui {
         return " OOPS!!! " + message;
     }
 
+    /**
+     * Prints a generic exception error message.
+     *
+     * @param message The exception message to be displayed.
+     * @return A string representing the exception error message.
+     */
     public String printExceptionError(String message) {
         printLine();
         System.out.println(" An error occurred: " + message);
@@ -146,9 +223,10 @@ public class Ui {
     }
 
     /**
-     * Displays the list of tasks that match the search keyword.
+     * Displays a list of tasks that match a given search keyword.
      *
-     * @param tasks The list of tasks that match the keyword.
+     * @param tasks The list of tasks that match the search keyword.
+     * @return A string representing the list of matching tasks.
      */
     public String printMatchingTasks(List<Task> tasks) {
         printLine();
