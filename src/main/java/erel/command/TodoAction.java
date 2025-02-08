@@ -10,7 +10,7 @@ import erel.ui.Ui;
  * description and adds it to the task list, and saves the updated list to storage.
  */
 public class TodoAction implements Action {
-    String description;
+    private final String description;
 
     /**
      * Constructs a TodoAction with the specified description.

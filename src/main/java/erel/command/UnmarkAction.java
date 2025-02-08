@@ -9,7 +9,7 @@ import erel.ui.Ui;
  * and updates it to the task list, and saves the updated list to storage.
  */
 public class UnmarkAction implements Action {
-    private int taskNumber;
+    private final int taskNumber;
 
     /**
      * Constructs an UnmarkAction for the specified task number.
