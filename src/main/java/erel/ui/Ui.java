@@ -88,7 +88,7 @@ public class Ui {
         System.out.println();
 
         return " Noted. I've removed this task:\n" + "    " + task.toString() +
-                "now" + " I've removed this task:\n" + "    " + task;
+                "\nNow you have " + tasks.size() + " tasks in the list.";
     }
 
     public String printMark(TaskList tasks, int index) {

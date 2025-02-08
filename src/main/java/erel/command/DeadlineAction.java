@@ -16,20 +16,29 @@ public class DeadlineAction implements Action {
     private final LocalDateTime by;
 
     public DeadlineAction(String description, LocalDateTime by) {
+        assert description != null && !description.trim().isEmpty() : "Description cannot be null or empty";
+        assert by != null : "Deadline date (by) cannot be null";
         this.description = description;
         this.by = by;
     }
 
     /**
-     * Executes the action to add a deadline task. Creates a new `Deadline` task, adds it to the task list, displays a
-     * confirmation message, and saves the updated task list to storage.
+     * Executes the action to add a deadline task.
+     * This method creates a new {@code Deadline} task, adds it to the task list, displays a confirmation message,
+     * and saves the updated task list to storage.
      *
-     * @param tasks   The task list to which the deadline task will be added.
-     * @param ui      The user interface for displaying messages to the user.
-     * @param storage The storage for saving the updated task list.
+     * @param tasks   The task list to which the deadline task will be added. Cannot be null.
+     * @param ui      The user interface for displaying messages. Cannot be null.
+     * @param storage The storage system for saving the updated task list. Cannot be null.
+     * @return A confirmation message after successfully adding the deadline task.
+     * @throws AssertionError if any parameter is null.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
+        assert tasks != null : "TaskList cannot be null";
+        assert ui != null : "Ui cannot be null";
+        assert storage != null : "Storage cannot be null";
+
         Deadline deadline = new Deadline(description, by);
         tasks.addTask(deadline);
         storage.saveTasksToFile(tasks);

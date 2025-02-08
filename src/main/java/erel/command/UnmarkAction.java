@@ -11,7 +11,14 @@ import erel.ui.Ui;
 public class UnmarkAction implements Action {
     private int taskNumber;
 
+    /**
+     * Constructs an UnmarkAction for the specified task number.
+     *
+     * @param taskNumber The index of the task to unmark. Must be a valid task number.
+     * @throws AssertionError If taskNumber is invalid (negative or out of bounds).
+     */
     public UnmarkAction(int taskNumber) {
+        assert taskNumber >= 0 : "Task number must be non-negative";
         this.taskNumber = taskNumber;
     }
 
@@ -22,10 +29,15 @@ public class UnmarkAction implements Action {
      * @param tasks   The task list to which a task will be unmarked
      * @param ui      The user interface for displaying messages to the user.
      * @param storage The storage for saving the updated task list.
+     * @throws AssertionError If any parameter is null.
      * @throws Exception If an error occurs during the execution of the action.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
+        assert tasks != null : "TaskList cannot be null";
+        assert ui != null : "Ui cannot be null";
+        assert storage != null : "Storage cannot be null";
+
         if(!tasks.getTask(taskNumber).isDone()){
             return ui.printUnMarkError(tasks, taskNumber);
 
