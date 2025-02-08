@@ -1,4 +1,4 @@
-package erel;
+package erel.gui;
 
 import javafx.application.Application;
 

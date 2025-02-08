@@ -49,7 +49,7 @@ test {
 }
 
 application {
-    mainClass.set("erel.Launcher")
+    mainClass.set("erel.gui.Launcher")
 }
 
 shadowJar {

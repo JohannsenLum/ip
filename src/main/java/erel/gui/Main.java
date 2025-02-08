@@ -1,8 +1,8 @@
-package erel;
+package erel.gui;
 
 import java.io.IOException;
 
-import erel.gui.MainWindow;
+import erel.ui.Erel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

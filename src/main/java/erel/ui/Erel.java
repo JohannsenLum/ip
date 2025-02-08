@@ -1,4 +1,4 @@
-package erel;
+package erel.ui;
 
 import erel.command.Action;
 import erel.command.ExitAction;
@@ -6,7 +6,6 @@ import erel.exception.ErelException;
 import erel.parser.Parser;
 import erel.storage.Storage;
 import erel.task.TaskList;
-import erel.ui.Ui;
 
 import java.io.IOException;
 
