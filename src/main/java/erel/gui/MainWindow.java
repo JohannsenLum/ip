@@ -35,7 +35,7 @@ public class MainWindow extends AnchorPane {
     public void setErel(Erel e) {
         erel = e;
         dialogContainer.getChildren().add(
-                DialogBox.getDukeDialog(erel.greet(), dukeImage)  // Show greeting on startup
+                DialogBox.getErelDialog(erel.greet(), dukeImage)  // Show greeting on startup
         );
     }
 
@@ -49,7 +49,7 @@ public class MainWindow extends AnchorPane {
         String response = erel.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getErelDialog(response, dukeImage)
         );
         userInput.clear();
     }

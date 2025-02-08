@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TaskTest {
     @Test
     public void testToString() {
-        Task task = new Task("Read book");
+        Task task = new Todo("Read book");
         assertEquals("Read book", task.getName());
     }
 }
