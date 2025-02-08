@@ -1,9 +1,6 @@
-T | 0 | read iLoveJavaBook
-D | 1 | return book | 2019-12-06 18:00
+T | 1 | read iLoveJavaBook
 D | 0 | return x | 2016-12-02 16:00
 T | 0 | hello word
-T | 0 | bye bye world
-D | 0 | cally wifey | 2025-01-27 10:00
 D | 0 | cally x | 2025-01-27 10:00
 T | 0 | hello
 D | 0 | return book | 2000-05-29 15:00
@@ -12,5 +9,9 @@ T | 0 | hello
 D | 0 | deadline hexacube | 2000-05-27 18:00
 E | 0 | event ragandflag | 2012-05-02 18:00 | 2015-05-20 20:00
 T | 0 | read book
-T | 0 | read iLoveJavaBooko
+T | 1 | read iLoveJavaBooko
 T | 0 | e
+D | 0 | ip | 2019-05-05 18:00
+T | 0 | ip
+E | 0 | doip | 2025-02-02 18:00 | 2025-02-03 18:00
+E | 0 | helloip | 2025-02-02 18:00 | 2025-01-01 18:00
