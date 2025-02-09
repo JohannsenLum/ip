@@ -1,9 +1,11 @@
 package erel.ui;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 public class UiTest {
     @Test
@@ -29,9 +31,7 @@ public class UiTest {
         ___________________________________________
          Hello! I'm Erel.
          What can I do for you?
-        ___________________________________________
-
-        """;
+        ___________________________________________\n\n""";
         assertEquals(expectedOutput, outContent.toString());
     }
 }

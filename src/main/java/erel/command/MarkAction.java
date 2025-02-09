@@ -11,7 +11,12 @@ import erel.ui.Ui;
 public class MarkAction implements Action {
     private int taskNumber;
 
-
+    /**
+     * Constructs a MarkAction with the specified task number.
+     *
+     * @param taskNumber The index of the task to be marked as done.
+     * @throws AssertionError If taskNumber is negative.
+     */
     public MarkAction(int taskNumber) {
         assert taskNumber >= 0 : "Task number must be non-negative";
         this.taskNumber = taskNumber;
@@ -33,7 +38,7 @@ public class MarkAction implements Action {
         assert ui != null : "Ui cannot be null";
         assert storage != null : "Storage cannot be null";
 
-        if(tasks.getTask(taskNumber).isDone()){
+        if (tasks.getTask(taskNumber).isDone()) {
             return ui.printMarkError(tasks, taskNumber);
 
         }

@@ -12,6 +12,12 @@ import erel.ui.Ui;
 public class DeleteAction implements Action {
     private final int taskNumber;
 
+    /**
+     * Constructs a DeleteAction with the specified task number.
+     *
+     * @param taskNumber The index of the task to be deleted.
+     * @throws AssertionError If taskNumber is negative.
+     */
     public DeleteAction(int taskNumber) {
         assert taskNumber >= 0 : "Task number must be non-negative";
         this.taskNumber = taskNumber;

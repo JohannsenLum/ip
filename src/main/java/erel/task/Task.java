@@ -35,10 +35,10 @@ public abstract class Task {
         char taskType = line.charAt(0);
 
         return switch (taskType) {
-            case 'T' -> Todo.fromFileFormat(line);
-            case 'D' -> Deadline.fromFileFormat(line);
-            case 'E' -> Event.fromFileFormat(line);
-            default -> throw new IllegalArgumentException("Invalid task type: " + taskType);
+        case 'T' -> Todo.fromFileFormat(line);
+        case 'D' -> Deadline.fromFileFormat(line);
+        case 'E' -> Event.fromFileFormat(line);
+        default -> throw new IllegalArgumentException("Invalid task type: " + taskType);
         };
     }
 

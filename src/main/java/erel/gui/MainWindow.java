@@ -35,7 +35,7 @@ public class MainWindow extends AnchorPane {
     public void setErel(Erel e) {
         erel = e;
         dialogContainer.getChildren().add(
-                DialogBox.getErelDialog(erel.greet(), dukeImage)  // Show greeting on startup
+                DialogBox.getErelDialog(erel.greet(), dukeImage) // Show greeting on startup
         );
     }
 

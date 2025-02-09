@@ -38,7 +38,7 @@ public class UnmarkAction implements Action {
         assert ui != null : "Ui cannot be null";
         assert storage != null : "Storage cannot be null";
 
-        if(!tasks.getTask(taskNumber).isDone()){
+        if (!tasks.getTask(taskNumber).isDone()) {
             return ui.printUnMarkError(tasks, taskNumber);
 
 

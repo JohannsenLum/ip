@@ -15,6 +15,13 @@ public class DeadlineAction implements Action {
     private final String description;
     private final LocalDateTime by;
 
+    /**
+     * Creates a new DeadlineAction with a specified description and deadline date.
+     *
+     * @param description A non-null, non-empty string describing the action.
+     * @param by A non-null LocalDateTime representing the deadline.
+     * @throws AssertionError If the description or by is null or empty
+     */
     public DeadlineAction(String description, LocalDateTime by) {
         assert description != null && !description.trim().isEmpty() : "Description cannot be null or empty";
         assert by != null : "Deadline date (by) cannot be null";

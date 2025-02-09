@@ -1,15 +1,16 @@
 package erel.ui;
 
-import erel.task.Task;
-import erel.task.TaskList;
-
 import java.util.List;
 import java.util.Scanner;
 
+import erel.task.Task;
+import erel.task.TaskList;
+
 
 /**
- * The `Ui` class is responsible for handling interactions with the user. It takes input from the user and outputs information
- * in a formatted and user-friendly way. It includes methods for greeting, displaying task lists, adding or removing tasks,
+ * The `Ui` class is responsible for handling interactions with the user.
+ * It takes input from the user and outputs information in a formatted and user-friendly way.
+ * It includes methods for greeting, displaying task lists, adding or removing tasks,
  * and handling errors.
  */
 public class Ui {
@@ -77,8 +78,8 @@ public class Ui {
 
         printLine();
         System.out.println(" Here are the tasks in your list:");
-        for(int i = 0; i < tasks.size(); i++){
-            System.out.println(" " + (i+1) + "." + tasks.getTask(i).toString());
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.println(" " + (i + 1) + "." + tasks.getTask(i).toString());
             output.append(i + 1).append(". ").append(tasks.getTask(i).toString()).append("\n");
         }
         printLine();
@@ -97,12 +98,12 @@ public class Ui {
     public String printInsert(Task task, TaskList tasks) {
         printLine();
         System.out.println(" Got it. I've added this task:\n" + "    " + task);
-        System.out.println( " Now you have " + tasks.size() + " tasks in the list.");
+        System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
         printLine();
         System.out.println();
 
-        return " Got it. I've added this task:\n" + "    " + task +
-                " Now you have " + tasks.size() + " tasks in the list.";
+        return " Got it. I've added this task:\n" + "    " + task
+                + " Now you have " + tasks.size() + " tasks in the list.";
     }
 
     /**
@@ -119,8 +120,8 @@ public class Ui {
         printLine();
         System.out.println();
 
-        return " Noted. I've removed this task:\n" + "    " + task.toString() +
-                "\nNow you have " + tasks.size() + " tasks in the list.";
+        return " Noted. I've removed this task:\n" + "    " + task.toString()
+                + "\nNow you have " + tasks.size() + " tasks in the list.";
     }
 
     /**
@@ -230,7 +231,7 @@ public class Ui {
      */
     public String printMatchingTasks(List<Task> tasks) {
         printLine();
-        if(tasks.isEmpty()) {
+        if (tasks.isEmpty()) {
             System.out.println(" No tasks found.");
             return "No tasks found.";
         }
@@ -238,8 +239,8 @@ public class Ui {
         output.append("Here are the matching tasks in your list:\n");
 
         System.out.println(" Here are the tasks in your list:");
-        for(int i = 0; i < tasks.size(); i++){
-            System.out.println(" " + (i+1) + "." + tasks.get(i).toString());
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.println(" " + (i + 1) + "." + tasks.get(i).toString());
             output.append(i + 1).append(". ").append(tasks.get(i).toString()).append("\n");
         }
 

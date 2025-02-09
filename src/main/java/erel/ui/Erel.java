@@ -1,5 +1,7 @@
 package erel.ui;
 
+import java.io.IOException;
+
 import erel.command.Action;
 import erel.command.ExitAction;
 import erel.exception.ErelException;
@@ -7,7 +9,6 @@ import erel.parser.Parser;
 import erel.storage.Storage;
 import erel.task.TaskList;
 
-import java.io.IOException;
 
 /**
  * The main class for the Erel Bot.
@@ -40,26 +41,21 @@ public class Erel {
         this("./data/erel.txt");
     }
 
-
-    /**
-     * The entry point of the Erel bot.
-     *
-     * @param args Command-line arguments (not used)
-     */
-
     /**
      * Generates a response for the user's chat message.
      */
     public String getResponse(String input) {
         try {
             Action action = Parser.parseCommand(input, tasks);
-            return action.execute(tasks, ui, storage);  // Ensure execute() returns a String
+
+            return action.execute(tasks, ui, storage); // Ensure execute() returns a String
         } catch (ErelException e) {
             return ui.printErelError(e.getMessage());
         } catch (Exception e) {
             return ui.printExceptionError(e.getMessage());
         }
     }
+
     public String greet() {
         return ui.greet();
     }

@@ -11,7 +11,7 @@ public class Todo extends Task {
      *
      * @param name The name or description of the todo task.
      */
-    public Todo(String name){
+    public Todo(String name) {
         super(name);
     }
 
@@ -22,8 +22,8 @@ public class Todo extends Task {
      * @return A formatted string representing the todo task.
      */
     @Override
-    public String toString(){
-        return  "[T]" + super.toString();
+    public String toString() {
+        return "[T]" + super.toString();
     }
 
     /**

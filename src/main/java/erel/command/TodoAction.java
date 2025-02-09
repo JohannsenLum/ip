@@ -18,7 +18,7 @@ public class TodoAction implements Action {
      * @param description The description of the todo task. Cannot be null or empty.
      * @throws AssertionError If description is null or empty.
      */
-    public TodoAction(String description){
+    public TodoAction(String description) {
         assert description != null && !description.trim().isEmpty() : "Description must not be null or empty";
         this.description = description;
     }
