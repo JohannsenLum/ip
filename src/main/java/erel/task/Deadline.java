@@ -49,8 +49,14 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy, HH:mm a");
-        return "[D]" + super.toString() + " (by: " + by.format(formatter) + ")";
+        String formattedDate = by.format(formatter);
+
+        // Convert only "AM"/"PM" to "am"/"pm"
+        String modifiedDate = formattedDate.replace("AM", "am").replace("PM", "pm");
+
+        return "[D]" + super.toString() + " (by: " + modifiedDate + ")";
     }
+
 
     /**
      * Converts the deadline task to a file-friendly format for storage. Includes the task type, status, name, and due
