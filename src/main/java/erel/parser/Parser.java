@@ -13,6 +13,7 @@ import erel.command.ExitAction;
 import erel.command.FindAction;
 import erel.command.MarkAction;
 import erel.command.PrintListAction;
+import erel.command.ReminderAction;
 import erel.command.TodoAction;
 import erel.command.UnmarkAction;
 import erel.exception.EmptyListException;
@@ -70,7 +71,6 @@ public class Parser {
             String[] deadlineParts = input.split(" /by ");
             LocalDateTime by = parseDateTime(deadlineParts[1]);
             return new DeadlineAction(deadlineParts[0].substring(9), by);
-
         case EVENT:
             checkValidEvent(input);
             String[] eventParts = input.split(" /from | /to ");
@@ -84,8 +84,20 @@ public class Parser {
         case FIND:
             checkValidDescription(input.split(" ", 2));
             return new FindAction(details);
+        case REMIND:
+            checkValidReminder(details);
+            return new ReminderAction(details);
         default:
             throw new ErelException("Unknown command: " + action);
+        }
+    }
+
+    private static void checkValidReminder(String type) throws ErelException {
+        if (type.isEmpty()) {
+            throw new ErelException("Remind cannot be empty, try it with deadline or event");
+        }
+        if (!type.equals("deadline") && !type.equals("event")) {
+            throw new ErelException("Remind are only for deadline or events");
         }
     }
 

@@ -69,4 +69,8 @@ public class Deadline extends Task {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return "D | " + (isDone() ? "1" : "0") + " | " + super.getName() + " | " + by.format(formatter);
     }
+
+    public LocalDateTime getBy() {
+        return by;
+    }
 }

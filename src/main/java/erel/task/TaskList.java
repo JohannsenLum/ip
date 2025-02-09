@@ -1,5 +1,6 @@
 package erel.task;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,4 +58,27 @@ public class TaskList {
         }
         return result;
     }
+
+    /**
+     * Filters tasks to get only upcoming reminders of the given type (deadline/event).
+     */
+    public List<Task> getUpcomingReminders(String type) {
+        List<Task> upcomingTasks = new ArrayList<>();
+        LocalDateTime now = LocalDateTime.now();
+
+        for (Task task : tasks) {
+            if (task instanceof Deadline deadlineTask && type.equals("deadline")) {
+                if (deadlineTask.getBy().isAfter(now) && !deadlineTask.isDone()) {
+                    upcomingTasks.add(task);
+                }
+            } else if (task instanceof Event eventTask && type.equals("event")) {
+                if (eventTask.getTo().isAfter(now) && !eventTask.isDone()) {
+                    upcomingTasks.add(task);
+                }
+            }
+        }
+
+        return upcomingTasks;
+    }
+
 }

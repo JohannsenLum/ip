@@ -248,4 +248,29 @@ public class Ui {
 
         return output.toString();
     }
+
+    /**
+     * Prints a list of upcoming reminders of the specified type.
+     * This method formats and returns a string representing the upcoming reminders
+     * of the given type (e.g., "deadline", "event") with their details.
+     * If no reminders are found, a message indicating this is returned.
+     *
+     * @param type      The type of reminders (e.g., "deadline" or "event").
+     * @param reminders A list of tasks representing the upcoming reminders.
+     * @return A string displaying the upcoming reminders, or a message indicating there are no upcoming reminders.
+     */
+    public String printReminderList(String type, List<Task> reminders) {
+        if (reminders.isEmpty()) {
+            return "No upcoming " + type + " tasks!";
+        }
+
+        int count = 1;
+        StringBuilder output = new StringBuilder();
+        output.append("Here are your upcoming ").append(type).append(":\n");
+        for (Task task : reminders) {
+            output.append(count).append(". ").append(task.toString()).append("\n");
+            count++;
+        }
+        return output.toString();
+    }
 }
