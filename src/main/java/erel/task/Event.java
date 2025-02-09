@@ -69,4 +69,8 @@ public class Event extends Task {
         return "E | " + (isDone() ? "1" : "0") + " | " + super.getName() + " | " + from.format(
                 formatter) + " | " + to.format(formatter);
     }
+
+    public LocalDateTime getTo() {
+        return to;
+    }
 }
