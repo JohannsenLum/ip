@@ -16,8 +16,9 @@ public class UiTest {
         Ui ui = new Ui();
         ui.printLine();
 
-        // Trim both expected and actual to ignore trailing newlines or spaces
-        assertEquals("___________________________________________", outContent.toString().trim());
+        // Normalize newlines by replacing both \r\n and \n with just \n
+        String expectedOutput = "___________________________________________\n";
+        assertEquals(expectedOutput.replace("\r\n", "\n"), outContent.toString().replace("\r\n", "\n"));
     }
 
     @Test
@@ -28,13 +29,13 @@ public class UiTest {
         Ui ui = new Ui();
         ui.greet();
 
-        // Adjust expected output and trim both expected and actual to ignore extra newlines
         String expectedOutput = """
         ___________________________________________
          Hello! I'm Erel.
          What can I do for you?
-        ___________________________________________""";
+        ___________________________________________\n\n""";
 
-        assertEquals(expectedOutput.trim(), outContent.toString().trim());
+        // Normalize newlines by replacing both \r\n and \n with just \n
+        assertEquals(expectedOutput.replace("\r\n", "\n"), outContent.toString().replace("\r\n", "\n"));
     }
 }
