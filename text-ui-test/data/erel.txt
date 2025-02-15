@@ -1,0 +1,7 @@
+T | 1 | read book
+D | 0 | return book | 2019-05-04 18:00
+E | 0 | project meeting | 2025-08-06 14:00 | 2025-08-06 16:00
+T | 1 | join sports club
+T | 0 | borrow book
+D | 0 | return book | 2025-01-29 18:00
+E | 0 | project meeting | 2025-04-28 12:00 | 2025-04-28 23:59

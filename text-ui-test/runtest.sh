@@ -6,6 +6,12 @@ then
     mkdir ../bin
 fi
 
+# delete the data/erel.txt file if it exists
+if [ -e "data/erel.txt" ]
+then
+    rm data/erel.txt
+fi
+
 # delete output from previous run
 if [ -e "./ACTUAL.TXT" ]
 then

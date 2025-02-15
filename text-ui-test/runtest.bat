@@ -1,5 +1,10 @@
 @ECHO OFF
 
+REM delete the data\erel.txt file if it exists
+if exist data\erel.txt (
+    del data\erel.txt
+)
+
 REM create bin directory if it doesn't exist
 if not exist ..\bin mkdir ..\bin
 
