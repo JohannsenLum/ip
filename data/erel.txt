@@ -21,3 +21,6 @@ E | 0 | dbs interview | 2025-02-28 18:00 | 2025-02-28 19:00
 E | 0 | dbs interview | 2025-02-28 18:00 | 2025-02-28 19:00
 D | 0 | watch week5 videos | 2025-02-10 18:00
 D | 0 | watch week6 videos | 2025-02-17 18:00
+T | 0 | read CS2103 Lecture
+D | 0 | finish week 6 Tutorial | 2025-02-19 20:00
+T | 1 | read CS2103 Week 6 notes
