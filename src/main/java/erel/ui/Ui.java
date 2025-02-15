@@ -62,7 +62,6 @@ public class Ui {
         printLine();
         System.out.println(" Bye. Hope to see you again soon!");
         printLine();
-        //return " Bye. Hope to see you again soon!";
 
         new Timer().schedule(new TimerTask() {
             public void run() {

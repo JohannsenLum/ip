@@ -3,7 +3,6 @@ package erel.command;
 import erel.storage.Storage;
 import erel.task.TaskList;
 import erel.ui.Ui;
-import javafx.application.Platform;
 
 /**
  * Represents an action to save the latest task list into storage to get ready
