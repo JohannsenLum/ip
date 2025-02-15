@@ -24,3 +24,4 @@ D | 0 | watch week6 videos | 2025-02-17 18:00
 T | 0 | read CS2103 Lecture
 D | 0 | finish week 6 Tutorial | 2025-02-19 20:00
 T | 1 | read CS2103 Week 6 notes
+T | 1 | read CS2103 week 6 notes
