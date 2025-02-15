@@ -27,7 +27,6 @@ public class ExitAction implements Action {
         assert storage != null : "Storage cannot be null";
 
         storage.saveTasksToFile(tasks);
-        Platform.exit();
         return ui.exit();
     }
 }

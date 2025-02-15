@@ -2,9 +2,12 @@ package erel.ui;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import erel.task.Task;
 import erel.task.TaskList;
+import javafx.application.Platform;
 
 
 /**
@@ -59,6 +62,13 @@ public class Ui {
         printLine();
         System.out.println(" Bye. Hope to see you again soon!");
         printLine();
+        //return " Bye. Hope to see you again soon!";
+
+        new Timer().schedule(new TimerTask() {
+            public void run() {
+                Platform.runLater(Platform::exit);
+            }
+        }, 2000);
         return " Bye. Hope to see you again soon!";
     }
 
