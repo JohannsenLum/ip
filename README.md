@@ -84,4 +84,4 @@ The task list is automatically saved as a .txt file in the following location: `
 ⚠️ Important: If the file's format is changed incorrectly, Erel bot may encounter errors when trying to parse the data. It is strongly advised to back up the file before making any edits. Only modify the file if you're confident in your ability to update it correctly.
 
 ## Acknowledgements
-Part of the JavaDocs comments were generated with the help of ChatGPT and DeepSeek.
+Some of the JavaDocs comments were created with the guidance and advice from ChatGPT and DeepSeek.
