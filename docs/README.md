@@ -46,6 +46,12 @@ Erel is a Personal Assistant Chatbot that allows you to manage tasks and events 
   - Example: `find interview` will show a list of tasks that matches the keyword 'interview'
 <img width="387" alt="image" src="https://github.com/user-attachments/assets/e3064f3c-f6a6-484e-bef4-2061e9edfc9d" />
 
+### **Remind**: Produce a list of deadline/events that have not been completed
+  - Format: `remind DEADLINE/EVENT`
+  - Example: `remind deadline` will show a list of deadlines that have not been completed
+  - 
+<img width="396" alt="image" src="https://github.com/user-attachments/assets/4adae75b-5017-40e8-ac88-9a1487c84ef9" />
+
     
 ### **Exit**: Exit Erel Chatbot.
   - Format: `exit`
