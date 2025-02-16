@@ -49,7 +49,7 @@ Erel is a Personal Assistant Chatbot that allows you to manage tasks and events 
 ### **Remind**: Produce a list of deadline/events that have not been completed
   - Format: `remind DEADLINE/EVENT`
   - Example: `remind deadline` will show a list of deadlines that have not been completed
-  - 
+
 <img width="396" alt="image" src="https://github.com/user-attachments/assets/4adae75b-5017-40e8-ac88-9a1487c84ef9" />
 
     
