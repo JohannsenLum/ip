@@ -25,3 +25,6 @@ T | 0 | read CS2103 Lecture
 D | 0 | finish week 6 Tutorial | 2025-02-19 20:00
 T | 1 | read CS2103 Week 6 notes
 T | 1 | read CS2103 week 6 notes
+T | 0 | eat lunch
+D | 0 | 2103 submission | 2025-02-21 18:00
+E | 0 | party | 2025-02-21 18:00 | 2025-02-28 22:00

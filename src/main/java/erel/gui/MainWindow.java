@@ -23,8 +23,8 @@ public class MainWindow extends AnchorPane {
 
     private Erel erel;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Erel.png"));
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
+    private final Image erelImage = new Image(this.getClass().getResourceAsStream("/images/Erel.png"));
 
     @FXML
     public void initialize() {
@@ -35,7 +35,7 @@ public class MainWindow extends AnchorPane {
     public void setErel(Erel e) {
         erel = e;
         dialogContainer.getChildren().add(
-                DialogBox.getErelDialog(erel.greet(), dukeImage) // Show greeting on startup
+                DialogBox.getErelDialog(erel.greet(), erelImage) // Show greeting on startup
         );
     }
 
@@ -49,7 +49,7 @@ public class MainWindow extends AnchorPane {
         String response = erel.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getErelDialog(response, dukeImage)
+                DialogBox.getErelDialog(response, erelImage)
         );
         userInput.clear();
     }

@@ -27,6 +27,10 @@ import erel.task.TaskList;
  * and the creation of corresponding `Action` objects.
  */
 public class Parser {
+    private static final String SPLIT_SEPARATOR = " ";
+    private static final String DEADLINE_SEPARATOR = " /by ";
+    private static final String EVENT_SEPARATOR = " /from | /to ";
+
     /**
      * Parses a date-time string into a `LocalDateTime` object. The expected format is "yyyy-MM-dd HH:mm".
      *
@@ -49,7 +53,7 @@ public class Parser {
      * @throws ErelException If the input is invalid or cannot be parsed.
      */
     public static Action parseCommand(String input, TaskList tasks) throws ErelException {
-        String[] parts = input.split(" ");
+        String[] parts = input.split(SPLIT_SEPARATOR);
         String action = parts[0];
         String details = parts.length > 1 ? parts[1] : "";
 
@@ -64,16 +68,16 @@ public class Parser {
             checkValidDelete(Integer.parseInt(details), tasks);
             return new DeleteAction(Integer.parseInt(details) - 1);
         case TODO:
-            checkValidDescription(input.split(" ", 2));
+            checkValidDescription(input.split(SPLIT_SEPARATOR, 2));
             return new TodoAction(input.substring(5));
         case DEADLINE:
             checkValidDeadline(input);
-            String[] deadlineParts = input.split(" /by ");
+            String[] deadlineParts = input.split(DEADLINE_SEPARATOR);
             LocalDateTime by = parseDateTime(deadlineParts[1]);
             return new DeadlineAction(deadlineParts[0].substring(9), by);
         case EVENT:
             checkValidEvent(input);
-            String[] eventParts = input.split(" /from | /to ");
+            String[] eventParts = input.split(EVENT_SEPARATOR);
             LocalDateTime from = parseDateTime(eventParts[1]);
             LocalDateTime to = parseDateTime(eventParts[2]);
             return new EventAction(eventParts[0].substring(6), from, to);
@@ -82,7 +86,7 @@ public class Parser {
         case BYE:
             return new ExitAction();
         case FIND:
-            checkValidDescription(input.split(" ", 2));
+            checkValidDescription(input.split(SPLIT_SEPARATOR, 2));
             return new FindAction(details);
         case REMIND:
             checkValidReminder(details);
@@ -112,7 +116,7 @@ public class Parser {
      */
     private static void checkValidMarkUnmark(String input, TaskList tasks) throws InvalidDescriptionException,
             IndexOutOfBoundsListException, EmptyListException {
-        String[] inputArr = input.split(" ");
+        String[] inputArr = input.split(SPLIT_SEPARATOR);
         if (tasks.isEmpty()) {
             throw new EmptyListException();
         }
@@ -164,8 +168,8 @@ public class Parser {
      * @throws ErelException If the input is missing a description, "/by", or has an invalid date-time format.
      */
     private static void checkValidDeadline(String input) throws ErelException {
-        String[] inputArr = input.split(" ", 2);
-        String[] deadlineParts = input.split(" /by ");
+        String[] inputArr = input.split(SPLIT_SEPARATOR, 2);
+        String[] deadlineParts = input.split(DEADLINE_SEPARATOR);
         if (inputArr.length <= 1 || inputArr[1].trim().isEmpty()) {
             throw new InvalidDescriptionException(inputArr[0]);
         }
@@ -187,8 +191,8 @@ public class Parser {
      * @throws ErelException If the input is missing a description, "/from", "/to", or has an invalid date-time format.
      */
     private static void checkValidEvent(String input) throws ErelException {
-        String[] inputArr = input.split(" ", 2);
-        String[] eventParts = input.split(" /from | /to ");
+        String[] inputArr = input.split(SPLIT_SEPARATOR, 2);
+        String[] eventParts = input.split(EVENT_SEPARATOR);
 
         if (inputArr.length <= 1 || inputArr[1].trim().isEmpty()) {
             throw new InvalidDescriptionException(inputArr[0]);
