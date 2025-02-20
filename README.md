@@ -72,17 +72,18 @@ You can also view your list, mark tasks, or delete events.
 ## Command Summary
 Here is a quick reference of all available commands in this chatbot:
 
-| Command   | Description                                 |
-|-----------|---------------------------------------------|
-| `todo`    | Add tasks                                   |
-| `deadline`| Add tasks with a specific deadline          |
-| `event`   | Add tasks with start and end date           |
-| `list`    | View all tasks                              |
-| `mark`    | Mark a task as completed                    |
-| `unmark`  | Unmark a task                               |
-| `delete`  | Delete a task                               |
-| `find`    | Search tasks by keyword                     |
-| `exit`    | Exit Erel Chatbot                           |
+| Command   | Description                                     |
+|-----------|---------------------------------------------    |
+| `todo`    | Add tasks                                       |
+| `deadline`| Add tasks with a specific deadline              |
+| `event`   | Add tasks with start and end date               |
+| `list`    | View all tasks                                  |
+| `mark`    | Mark a task as completed                        |
+| `unmark`  | Unmark a task                                   |
+| `delete`  | Delete a task                                   |
+| `find`    | Search tasks by keyword                         |
+| `remind`  | View a list of deadline/events that is unmarked |
+| `exit`    | Exit Erel Chatbot                               |
 
 
 ## Data Saving
