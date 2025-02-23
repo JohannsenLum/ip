@@ -1,6 +1,6 @@
 # Erel User Guide
 
-<img width="400" alt="Ui" src="https://github.com/user-attachments/assets/0f20d0bd-5708-4cec-8cf8-6761f3904b71" />
+![Ui](https://github.com/user-attachments/assets/b49c8f6d-7919-4bab-b1c4-427c2911ba54)
 
 Erel is a Personal Assistant Chatbot that allows you to manage tasks and events efficiently. This user guide will walk you through the available features and commands.
 
@@ -44,15 +44,16 @@ Erel is a Personal Assistant Chatbot that allows you to manage tasks and events 
 ### **Find**: Search for tasks by keyword.
   - Format: `find KEYWORD`
   - Example: `find interview` will show a list of tasks that matches the keyword 'interview'
-<img width="387" alt="image" src="https://github.com/user-attachments/assets/e3064f3c-f6a6-484e-bef4-2061e9edfc9d" />
+
+![image](https://github.com/user-attachments/assets/da2dcf60-d9ec-4340-b283-18ba8b9741f0)
 
 ### **Remind**: Produce a list of deadline/events that have not been completed
   - Format: `remind DEADLINE/EVENT`
   - Example: `remind deadline` will show a list of deadlines that have not been completed
 
-<img width="396" alt="image" src="https://github.com/user-attachments/assets/4adae75b-5017-40e8-ac88-9a1487c84ef9" />
+![image](https://github.com/user-attachments/assets/76c03cad-65df-42c2-8de6-4d8e6a82d29d)
+![image](https://github.com/user-attachments/assets/343498af-0fed-4b74-9861-158a791f120b)
 
-    
 ### **Exit**: Exit Erel Chatbot.
   - Format: `exit`
   - Example: `exit`
