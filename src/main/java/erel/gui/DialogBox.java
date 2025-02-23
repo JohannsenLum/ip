@@ -43,16 +43,24 @@ public class DialogBox extends HBox {
 
         dialog.setText(text);
         displayPicture.setImage(img);
+
+        // Apply circular clipping to display picture
+        double radius = 25; // Adjust as needed
+        displayPicture.setFitWidth(radius * 2);
+        displayPicture.setFitHeight(radius * 2);
+        displayPicture.setClip(new javafx.scene.shape.Circle(radius, radius, radius));
     }
 
     /**
      * Flips the dialog box such that the ImageView is on the left and text on the right.
      */
     private void flip() {
+
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
+        dialog.getStyleClass().add("reply-label");
     }
 
     /**

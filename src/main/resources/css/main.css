@@ -1,0 +1,58 @@
+.root {
+    main-color: rgb(237, 255, 242);       /* Create a looked-up color called "main-color" within root. */
+    -fx-background-color: linear-gradient(to bottom right, #a8c0ff, #ddeeff);
+}
+
+.text-field {
+    -fx-background-color: rgba(168, 192, 255, 0.3); /* Soft translucent blue */
+    -fx-text-fill: #2c3e50; /* Dark blue for contrast */
+    -fx-font: 20px "Arial";
+    -fx-background-radius: 8px;
+    -fx-border-color: #5f85db;
+    -fx-border-width: 2px;
+}
+.button {
+    -fx-background-color: #5f85db; /* Soft blue */
+    -fx-text-fill: white;
+    -fx-font: bold 16px "Arial";
+    -fx-background-radius: 10px;
+}
+
+.button:hover {
+    -fx-background-color: #4a6fb0;
+}
+
+.button:pressed {
+    -fx-background-color: #3b5d99;
+}
+
+.scroll-pane,
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+
+.scroll-bar .thumb {
+    -fx-background-color: #5f85db; /* Match button color */
+    -fx-background-radius: 10px;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #4a6fb0; /* Slightly darker on hover */
+}
+
+.scroll-bar .thumb:pressed {
+    -fx-background-color: #3b5d99; /* Even darker when pressed */
+}
+
+/* Hides the increment and decrement buttons. */
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-pref-height: 0;
+    -fx-opacity: 0;
+}
+

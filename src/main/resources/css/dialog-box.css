@@ -1,0 +1,26 @@
+.label {
+    -fx-background-color: rgba(0, 0, 0, 0.1); /* Light black transparency */
+    -fx-border-color: #5f85db; /* Muted blue border */
+    -fx-border-width: 2px;
+    -fx-background-radius: 1em 1em 0 1em;
+    -fx-border-radius: 1em 1em 0 1em;
+    -fx-padding: 6px;
+    -fx-border-insets: 0px 7px 0px 7px;
+    -fx-background-insets: 0px 7px 0px 7px;
+    -fx-text-fill: #2c3e50; /* Dark blue text for contrast */
+}
+
+.reply-label {
+    -fx-background-radius: 1em 1em 1em 0;
+    -fx-border-radius: 1em 1em 1em 0;
+}
+
+#displayPicture {
+    -fx-background-radius: 50%; /* Makes it circular */
+    -fx-border-radius: 50%;
+    -fx-border-color: white; /* Optional: Add a border */
+    -fx-border-width: 2px;
+    -fx-padding: 2px;
+}
+
+
